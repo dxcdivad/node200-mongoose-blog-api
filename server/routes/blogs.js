@@ -1,9 +1,9 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const Blog = require('../models/Blog');
-const User = require('../models/User');
+const Blog = require("../models/Blog");
+const User = require("../models/User");
 
-router.get('/', (req, res) => {
+router.get("/", (req, res) => {
     Blog
         .find()
         .then(blogs => {
@@ -11,9 +11,9 @@ router.get('/', (req, res) => {
         });
 });
 
-router.get('/featured', (req, res) => {
+router.get("/featured", (req, res) => {
     Blog
-        .where('featured').equals('true')
+        .where("featured").equals("true")
         .then(blogs => {
             if(blogs) {
                 res.status(200).json(blogs)
@@ -23,7 +23,7 @@ router.get('/featured', (req, res) => {
         });
 });
 
-router.get('/:id', (req, res) => {
+router.get("/:id", (req, res) => {
     Blog
         .findById(req.params.id)
         .then(blogs => {
@@ -35,7 +35,7 @@ router.get('/:id', (req, res) => {
         });
 });
 
-router.post('/', (req, res) => {
+router.post("/", (req, res) => {
         let dbUser = null;
         User
             .findById(req.body.authorId)
@@ -52,14 +52,14 @@ router.post('/', (req, res) => {
             
 });
 
-router.put('/:id', (req, res) => {
+router.put("/:id", (req, res) => {
     Blog.findByIdAndUpdate(req.params.id, {$set:req.body})
     .then(blogs => {
         res.status(204).json(blogs);
     });
 });
 
-router.delete('/:id', (req, res) => {
+router.delete("/:id", (req, res) => {
     Blog.findByIdAndRemove(req.params.id)
     .then(blogs => {
         res.status(200).json(blogs);

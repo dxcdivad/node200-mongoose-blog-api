@@ -1,8 +1,8 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const User = require('../models/User');
+const User = require("../models/User");
 
-router.get('/', (req, res) => {
+router.get("/", (req, res) => {
     User
         .find()
         .then(users => {
@@ -11,7 +11,7 @@ router.get('/', (req, res) => {
 });
 
 
-router.get('/:id', (req,res) => {
+router.get("/:id", (req,res) => {
     User
         .findById(req.params.id)
         .then(users => {
@@ -23,7 +23,7 @@ router.get('/:id', (req,res) => {
         })
 });
 
-router.post('/', (req,res) => {
+router.post("/", (req,res) => {
     let newUser = new User(req.body);
         newUser.save()
         .then(users => {
@@ -31,7 +31,7 @@ router.post('/', (req,res) => {
         });
 });
 
-router.put('/:id', (req,res) => {
+router.put("/:id", (req,res) => {
 
         User.findByIdAndUpdate(req.params.id, {$set:req.body})
         .then(users => {
@@ -39,7 +39,7 @@ router.put('/:id', (req,res) => {
         });
 });
 
-router.delete('/:id', (req,res) => {
+router.delete("/:id", (req,res) => {
     User.findByIdAndRemove(req.params.id)
     .then(users => {
         res.status(200).json(users);
