@@ -36,12 +36,6 @@ router.get('/:id', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-    User.findById(req.body.authorId)
-        .then(user => {
-            const newBlog = new Blog(req.body);    
-            newBlog.author = user._id;
-            return newBlog.save();
-        })
         let dbUser = null;
         User
             .findById(req.body.authorId)
@@ -66,7 +60,7 @@ router.put('/:id', (req, res) => {
 });
 
 router.delete('/:id', (req, res) => {
-    Blog.findByIdAndRemove(req.params.id, {$set:req.body})
+    Blog.findByIdAndRemove(req.params.id)
     .then(blogs => {
         res.status(200).json(blogs);
     });

@@ -10,13 +10,6 @@ router.get('/', (req, res) => {
         });
 });
 
-router.get('/api/users/', (req,res) => {
-    User
-        .find()
-        .then(users => {
-            res.status(200).json(users);
-        });
-});
 
 router.get('/:id', (req,res) => {
     User
@@ -31,7 +24,7 @@ router.get('/:id', (req,res) => {
 });
 
 router.post('/', (req,res) => {
-    var newUser = new User(req.body);
+    let newUser = new User(req.body);
         newUser.save()
         .then(users => {
             res.status(201).json(users);
@@ -39,8 +32,7 @@ router.post('/', (req,res) => {
 });
 
 router.put('/:id', (req,res) => {
-    // var newUser = new User(req.body);
-    // var id = newUser._id
+
         User.findByIdAndUpdate(req.params.id, {$set:req.body})
         .then(users => {
             res.status(204).json(users);
