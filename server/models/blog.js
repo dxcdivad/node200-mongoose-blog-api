@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const ObjectId = mongoose.Schema.Types.ObjectId
 
 
 const BlogSchema = new Schema({
@@ -8,7 +7,6 @@ const BlogSchema = new Schema({
     article: { type: String, required: true},
     published: { type: Date, required: true},
     featured: { type: Boolean, required: true},
-    authorId: { type: ObjectId, required: false},
     author: { type: Schema.Types.ObjectId, ref: 'User' }
 });
 
