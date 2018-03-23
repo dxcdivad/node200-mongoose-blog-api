@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
+const morgan = require("morgan");
 
 mongoose.connect("mongodb://localhost/my-blog");
 
@@ -8,6 +9,7 @@ mongoose.Promise = Promise;
 
 const app = express();
 
+app.use(morgan("dev"));
 app.use(bodyParser.json());
 
 app.get("/", (req, res) => {
